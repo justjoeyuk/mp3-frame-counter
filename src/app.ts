@@ -6,7 +6,7 @@ const buildServer = (opts = {}) => {
   const app = fastify(opts);
   app.register(multipart);
 
-  app.post("/frames", async function (req, res) {
+  app.post("/file-upload", async function (req, res) {
     const data = await req.file();
 
     const parseTask: Promise<number> = new Promise((resolve, reject) => {

@@ -33,6 +33,6 @@ Logging: Pino Pretty
 
 ##### Usage
 
-You can run `npm start` to build and run the server. You can then make a multipart/form-data `POST` request to `http://localhost:3000/frames` with your `mp3` file as a field.
+You can run `npm start` to build and run the server. You can then make a multipart/form-data `POST` request to `http://localhost:3000/file-upload` with your `mp3` file as a field.
 
 There are implicit limits on filesizes I believe, but nothing has been explicitly set, so proceed with caution.
