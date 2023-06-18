@@ -1,5 +1,5 @@
 build/
 node_modules/
 .env*
-.nyc_output
+.nyc_output/
 coverage/
