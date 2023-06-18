@@ -86,7 +86,7 @@ class FrameService {
       }
 
       if (this._prevFrameHeader?.currentByteOffset === 2) {
-        const bitRateIdx = (byte & 0xf0) >> 4;
+        const bitRateIdx = (byte & 0b11110000) >> 4;
 
         if (this._prevFrameHeader?.id && this._prevFrameHeader?.layer) {
           const frameId = this._prevFrameHeader.id.valueOf();
@@ -113,16 +113,23 @@ class FrameService {
         }
       }
 
+      if (this._prevFrameHeader) {
+        this._prevFrameHeader.currentByteOffset += 1;
+      }
+
       this._prevFrameByteOffset += 1;
       this._prevByte255 = byte === 0xff;
     }
 
+    console.log(`Got Frames in Chunk: ${chunkFrames}`);
     this.frameCount += chunkFrames;
   }
 
   clear() {
-    this.frameCount = 0;
+    this._prevFrameHeader = undefined;
+    this._prevFrameByteOffset = 0;
     this._prevByte255 = false;
+    this.frameCount = 0;
   }
 }
 
